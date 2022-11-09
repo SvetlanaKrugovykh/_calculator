@@ -15,11 +15,27 @@ function logKey(e) {
 }
 
 function toDec(str) {
-	return "343.43.43";
+	let strDec = '';
+	let substrs = str.split('.');
+
+	for (const substr of substrs) {
+		strDec = strDec + parseInt(substr, 16) + '.';
+	}
+
+	strDec = strDec.substring(0, strDec.length - 1)
+	return strDec;
 }
 
 function toHex(str) {
-	return "ff.dd.cc";
+	let strHex = '';
+	let substrs = str.split('.');
+
+	for (const substr of substrs) {
+		strHex = strHex + Number(substr).toString(16) + '.';
+	}
+
+	strHex = strHex.substring(0, strHex.length - 1)
+	return strHex;
 }
 
 function calculate() {
