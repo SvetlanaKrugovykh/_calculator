@@ -1,0 +1,103 @@
+// out: style.css, compress: false, sourceMap: false
+
+@breakpointMobile: 768px;
+@backgroundBodyColor: white;
+@mainColor: white;
+@backgroundColor: black;
+@borderColor: black; 
+@FonColor: rgb(241, 235, 235);
+
+
+* {
+		box-sizing: border-box;
+		max-width: 1055px;
+  }
+
+
+	body {
+ 	min-height: 100vh;
+	background: linear-gradient(to right, @FonColor,@FonColor);
+ 	display: flex;
+ 	justify-content: center;
+ 	align-items: flex-start;
+ }
+
+ .container {
+	min-width: 412px;
+ 	display: flex;
+ 	flex-wrap: wrap;
+ 	flex: 0 1 60%;
+	border-radius: 10px;
+	overflow: hidden;
+	text-align: right;
+	box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.5);
+ }
+
+ .buttons {
+ 	display: flex;
+ 	flex-wrap: wrap;
+ 	flex: 0 1 100%;
+	width: 100%;
+	border: none;
+ }
+
+ .display {
+ 	height: 12vh;
+	width: 100%;
+ 	border: 1px solid black;
+	display: flex;
+ 	justify-content: space-between;
+ 	align-items: center;
+ 	color: @mainColor;
+	background-color: @backgroundColor;
+ 	padding: 0 10px;
+ }
+
+ .output {
+	font-size: 28px;
+	padding-top: 0%;
+	padding: 25px;
+ }
+
+ .result {
+	font-size: 28px;
+	padding: 25px;
+ }
+
+ .button {
+	border: none;
+ 	display: flex;
+ 	flex: 0 1 25%;
+ 	justify-content: center;
+ 	align-items: center;
+ 	height: 50px;
+ 	border: 1px solid black;
+ 	border-top: none;
+ 	border-left: none;
+ 	cursor: pointer;
+ 	background: -webkit-linear-gradient(top, #d2d2d2, #ddd);
+ 	font-size: 2em;
+	transition: all 0.3s ease-in-out;
+ }
+
+ .button:nth-child(4n+1) {
+ 	border-left: 1px solid @borderColor;
+ }
+
+ .button:nth-child(4n),
+ .button:last-child {
+ 	background: #f98110;
+ 	color: @mainColor;
+ }
+
+ .zero-btn {
+ 	flex-grow: 2;
+ }
+
+ .doubleBordered {
+ 	border: 2px solid black;
+ }
+
+ button:hover {
+ 	font-weight: bold;
+ }
