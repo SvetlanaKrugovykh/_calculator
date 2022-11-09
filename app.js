@@ -2,12 +2,24 @@ const output = document.querySelector(".output");
 const result = document.querySelector(".result");
 const keys = document.querySelectorAll("button");
 
+function checkOutput() {
+	result.style.color = `white`;
+	output.textContent = output.textContent.replace(/[^0-9A-Fa-f/+/*/)/(/%/./-]/g, '');
+}
+
+function backspace() {
+	output.textContent = output.textContent.substring(0, output.textContent.length - 1);
+}
 
 addEventListener("keydown", (e) => {
+	if (e.code == 'Delete') {
+		backspace();
+		return;
+	}
 	if (e.code == 'KeyV' && e.ctrlKey) {
 		output.textContent = e.clipboardData.getData('Text');
-	}
-	else {
+		checkOutput();
+	} else {
 		output.contenteditable = 'false';
 		let source_array = [e.keyCode];
 		output.textContent += String.fromCharCode.apply(null, source_array);
@@ -23,8 +35,11 @@ keys.forEach(key => {
 
 function toDec(str) {
 	let strDec = '';
-	let substrs = str.split('.');
+	output.textContent = output.textContent.replaceAll(':', '.');
+	output.textContent = output.textContent.replaceAll('-', '.');
+	checkOutput();
 
+	let substrs = str.split('.');
 	for (const substr of substrs) {
 		strDec = strDec + parseInt(substr, 16) + '.';
 	}
@@ -34,6 +49,7 @@ function toDec(str) {
 }
 
 function toHex(str) {
+	checkOutput();
 	let strHex = '';
 	let substrs = str.split('.');
 
@@ -76,12 +92,12 @@ function calculate() {
 	}
 
 	if (buttonText === "DEL") {
-		output.textContent = output.textContent.substring(0, output.textContent.length - 1);
+		backspace();
 		return;
 	}
 
 	if (buttonText === "=") {
-		result.style.color = `white`;
+		checkOutput();
 		try {
 			result.innerText = eval(output.innerText);
 		} catch {
