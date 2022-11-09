@@ -1,18 +1,25 @@
-//selector
 const output = document.querySelector(".output");
 const result = document.querySelector(".result");
 const keys = document.querySelectorAll("button");
 
-//eventlistener
+
+addEventListener("keydown", (e) => {
+	if (e.code == 'KeyV' && e.ctrlKey) {
+		output.textContent = e.clipboardData.getData('Text');
+	}
+	else {
+		output.contenteditable = 'false';
+		let source_array = [e.keyCode];
+		output.textContent += String.fromCharCode.apply(null, source_array);
+		output.contenteditable = 'true';
+	}
+});
+
 keys.forEach(key => {
 	key.addEventListener("click", calculate);
 });
 
-addEventListener("keydown", logKey);
-function logKey(e) {
-	let source_array = [e.keyCode];
-	output.textContent += String.fromCharCode.apply(null, source_array);
-}
+//#region calculation
 
 function toDec(str) {
 	let strDec = '';
@@ -22,7 +29,7 @@ function toDec(str) {
 		strDec = strDec + parseInt(substr, 16) + '.';
 	}
 
-	strDec = strDec.substring(0, strDec.length - 1)
+	strDec = strDec.substring(0, strDec.length - 1);
 	return strDec;
 }
 
@@ -34,7 +41,7 @@ function toHex(str) {
 		strHex = strHex + Number(substr).toString(16) + '.';
 	}
 
-	strHex = strHex.substring(0, strHex.length - 1)
+	strHex = strHex.substring(0, strHex.length - 1);
 	return strHex;
 }
 
@@ -78,7 +85,7 @@ function calculate() {
 		try {
 			result.innerText = eval(output.innerText);
 		} catch {
-			result.innerText = 'ERROR!';
+			result.innerText = 'ERR!';
 			result.style.color = `red`;
 		}
 		result.style.animation = "big 0.5s ease-in-out";
@@ -94,3 +101,4 @@ function calculate() {
 
 }
 
+//#endregion
