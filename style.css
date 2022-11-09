@@ -10,10 +10,10 @@ body {
   align-items: flex-start;
 }
 .container {
-  min-width: 412px;
+  min-width: 312px;
   display: flex;
   flex-wrap: wrap;
-  flex: 0 1 60%;
+  flex: 0 1 50%;
   border-radius: 10px;
   overflow: hidden;
   text-align: right;
