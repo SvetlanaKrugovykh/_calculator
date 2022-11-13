@@ -16,13 +16,14 @@ addEventListener("keydown", (e) => {
 		backspace();
 		return;
 	}
+
 	if (e.code == 'KeyV' && e.ctrlKey) {
 		output.textContent = e.clipboardData.getData('Text');
 		checkOutput();
 	} else {
 		output.contenteditable = 'false';
-		let source_array = [e.keyCode];
-		output.textContent += String.fromCharCode.apply(null, source_array);
+		output.textContent += e.key;
+		checkOutput();
 		output.contenteditable = 'true';
 	}
 });

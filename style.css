@@ -10,7 +10,7 @@ body {
   align-items: flex-start;
 }
 .container {
-  min-width: 312px;
+  min-width: 252px;
   display: flex;
   flex-wrap: wrap;
   flex: 0 1 50%;
@@ -35,12 +35,17 @@ body {
   align-items: center;
   color: white;
   background-color: black;
-  padding: 0 10px;
+  padding: 10px 10px;
 }
 .output {
   font-size: 28px;
   padding-top: 0%;
   padding: 25px;
+}
+@media (max-width: 768px) {
+  .output {
+    font-size: 14px;
+  }
 }
 .result {
   font-size: 28px;

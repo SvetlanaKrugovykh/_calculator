@@ -20,10 +20,12 @@
  	display: flex;
  	justify-content: center;
  	align-items: flex-start;
+	@media (max-width: @breakpointMobile) {
+	}
  }
 
  .container {
-	min-width: 312px;
+	min-width: 252px;
  	display: flex;
  	flex-wrap: wrap;
  	flex: 0 1 50%;
@@ -50,14 +52,18 @@
  	align-items: center;
  	color: @mainColor;
 	background-color: @backgroundColor;
- 	padding: 0 10px;
+ 	padding: 10px 10px;
+
  }
 
  .output {
 	font-size: 28px;
 	padding-top: 0%;
 	padding: 25px;
- }
+		@media (max-width: @breakpointMobile) {
+			font-size: 14px;
+		}
+}
 
  .result {
 	font-size: 28px;
