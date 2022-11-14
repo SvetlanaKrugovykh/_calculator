@@ -91,16 +91,92 @@ body {
   }
 }
 .buttons {
-  display: flex;
-  flex-wrap: wrap;
-  flex: 0 1 100%;
+  display: grid;
+  grid-template-columns: 2.5fr, 2.5fr, 2.5fr, 2.5fr;
+  grid-template-rows: auto;
+  grid-template-areas: "c11 c12 c13 c14" "c21 c22 c23 c24" "c31 c32 c33 c34" "c41 c42 c43 c44" "c51 c52 c53 c54" "c61 c62 c63 c64";
+  background-color: white;
+  border: 1px solid black;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
   width: 100%;
   border: none;
+}
+.c11 {
+  grid-area: c11;
+}
+.c12 {
+  grid-area: c12;
+}
+.c13 {
+  grid-area: c13;
+}
+.c14 {
+  grid-area: c14;
+}
+.r21 {
+  grid-area: r21;
+}
+.r22 {
+  grid-area: r22;
+}
+.r23 {
+  grid-area: r23;
+}
+.r24 {
+  grid-area: r24;
+}
+.c31 {
+  grid-area: c31;
+}
+.c32 {
+  grid-area: c32;
+}
+.c33 {
+  grid-area: c33;
+}
+.c34 {
+  grid-area: c34;
+}
+.r41 {
+  grid-area: r41;
+}
+.r42 {
+  grid-area: r42;
+}
+.r43 {
+  grid-area: r43;
+}
+.r44 {
+  grid-area: r44;
+}
+.c51 {
+  grid-area: c51;
+}
+.c52 {
+  grid-area: c52;
+}
+.c53 {
+  grid-area: c53;
+}
+.c54 {
+  grid-area: c54;
+}
+.r61 {
+  grid-area: r61;
+}
+.r62 {
+  grid-area: r62;
+}
+.r63 {
+  grid-area: r63;
+}
+.r64 {
+  grid-area: r64;
 }
 .button {
   border: none;
   display: flex;
-  flex: 0 1 25%;
   justify-content: center;
   align-items: center;
   height: 50px;
@@ -111,6 +187,7 @@ body {
   background: -webkit-linear-gradient(top, #d2d2d2, #ddd);
   font-size: 2em;
   transition: all 0.3s ease-in-out;
+  width: 100%;
 }
 .button:nth-child(4n+1) {
   border-left: 1px solid black;
