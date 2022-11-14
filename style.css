@@ -1,16 +1,21 @@
-* {
+html {
   box-sizing: border-box;
-  max-width: 1055px;
+}
+*,
+::after,
+::before {
+  box-sizing: inherit;
 }
 body {
-  min-height: 100vh;
+  padding-top: 3%;
   background: linear-gradient(to right, #f1ebeb, #f1ebeb);
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  margin: auto;
 }
 .container {
-  min-width: 252px;
+  min-width: 90%;
   display: flex;
   flex-wrap: wrap;
   flex: 0 1 50%;
@@ -19,37 +24,78 @@ body {
   text-align: right;
   box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.5);
 }
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  flex: 0 1 100%;
-  width: 100%;
-  border: none;
-}
 .display {
   height: 12vh;
   width: 100%;
   border: 1px solid black;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: inline-grid;
+  grid-template-columns: 7.5fr 2.5fr;
+  grid-template-areas: "output output" "result result";
   color: white;
   background-color: black;
   padding: 10px 10px;
 }
 .output {
+  grid-area: output;
+  text-align: left;
+  align-self: top;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-size: 28px;
   padding-top: 0%;
   padding: 25px;
 }
 @media (max-width: 768px) {
   .output {
+    min-width: 80%;
+    width: 90%;
+    max-width: 100%;
     font-size: 14px;
   }
 }
+@media (max-width: 376px) {
+  .output {
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+  }
+}
 .result {
+  grid-area: output;
+  text-align: right;
+  align-self: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-size: 28px;
-  padding: 25px;
+  padding-left: 0;
+}
+@media (max-width: 768px) {
+  .result {
+    min-width: 80%;
+    width: 90%;
+    max-width: 100%;
+    font-size: 14px;
+  }
+}
+@media (max-width: 376px) {
+  .result {
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+  }
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 1 100%;
+  width: 100%;
+  border: none;
 }
 .button {
   border: none;

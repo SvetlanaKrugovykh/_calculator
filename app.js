@@ -1,6 +1,7 @@
 const output = document.querySelector(".output");
 const result = document.querySelector(".result");
 const keys = document.querySelectorAll("button");
+let PressProcent = false;
 
 function checkOutput() {
 	result.style.color = `white`;
@@ -12,20 +13,32 @@ function backspace() {
 }
 
 addEventListener("keydown", (e) => {
+	if (e.key === "=" || e.key === "Enter") {
+		calcResult();
+		return;
+	}
+
 	if (e.code == 'Delete') {
 		backspace();
 		return;
 	}
-
 	if (e.code == 'KeyV' && e.ctrlKey) {
 		output.textContent = e.clipboardData.getData('Text');
 		checkOutput();
-	} else {
-		output.contenteditable = 'false';
-		output.textContent += e.key;
-		checkOutput();
-		output.contenteditable = 'true';
+		return;
 	}
+
+	if (PressProcent) {
+		result.innerText = toProc(output.textContent);
+		PressProcent = false;
+		return;
+	}
+
+	output.contenteditable = 'false';
+	output.textContent += e.key;
+	checkOutput();
+	output.contenteditable = 'true';
+
 });
 
 keys.forEach(key => {
@@ -62,6 +75,25 @@ function toHex(str) {
 	return strHex;
 }
 
+function toProc(str) {
+	let procRezult = undefined;
+	checkOutput();
+	let substrs = str.split('%');
+	try {
+		procRezult =
+			(substrs[0] - (Math.floor(substrs[0] / substrs[1]))).toString();
+	}
+	catch {
+		return 'ERR!';
+	}
+	if (procRezult === undefined) {
+		return 'ERR!';
+	} else {
+		PressProcent = false;
+		return procRezult.toString();
+	}
+}
+
 function calculate() {
 	let buttonText = this.innerText;
 
@@ -83,6 +115,12 @@ function calculate() {
 		return;
 	}
 
+	if (buttonText === "%") {
+		PressProcent = true;
+		output.textContent += buttonText;
+		return;
+	}
+
 	if (buttonText === "+/-") {
 		if (output.textContent.substring(0, 1) === '-') {
 			output.textContent = output.textContent.substring(1, output.textContent.length);
@@ -98,24 +136,34 @@ function calculate() {
 	}
 
 	if (buttonText === "=") {
-		checkOutput();
-		try {
-			result.innerText = eval(output.innerText);
-		} catch {
-			result.innerText = 'ERR!';
-			result.style.color = `red`;
-		}
-		result.style.animation = "big 0.5s ease-in-out";
-		output.style.animation = "small 0.5s ease-in-out";
-		result.style.animationFillMode = "forwards";
-		output.style.animationFillMode = "forwards";
-	}
-
-	else {
+		calcResult();
+	} else {
 		output.textContent += buttonText;
 	}
 
 
 }
 
+
+function calcResult() {
+	checkOutput();
+	try {
+		if (PressProcent) {
+			result.innerText = toProc(output.textContent);
+		} else {
+			result.innerText = eval(output.innerText);
+		}
+	} catch {
+		result.innerText = 'ERR!';
+		result.style.color = `red`;
+	}
+	result.style.animation = "big 0.5s ease-in-out";
+	output.style.animation = "small 0.5s ease-in-out";
+	result.style.animationFillMode = "forwards";
+	output.style.animationFillMode = "forwards";
+}
+
+
 //#endregion
+
+
